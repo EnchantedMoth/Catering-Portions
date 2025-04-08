@@ -1,9 +1,12 @@
+
 //pulling in page components
-var typeSelect = document.querySelector("#typeSelect")
-var typeSelectBtn = document.querySelector("#typeSelectBtn")
-var optionsDiv = document.querySelector("#options")
+const typeSelect = document.querySelector("#typeSelect")
+const typeSelectBtn = document.querySelector("#typeSelectBtn")
+const optionsDiv = document.querySelector("#options")
+const resultsDiv = document.querySelector("#results")
 
-
+var totalPeople = 0
+var selectedMeat = ""
 
 //functions of choosing type and options
 function chooseType () {
@@ -31,7 +34,17 @@ function chooseType () {
 
         //event listener to fire calculatePortions
         calculateBtn.addEventListener("click", function(event){
-            calculateTacoPortions();
+            totalPeople = headCount.value;
+            let selectedMeat = meat.value;
+
+            if (selectedMeat === "Chicken") {
+                calculateTacoPortions(chickenTacoIngredients)
+            } else if (selectedMeat === "Ground Beef"){
+                calculateTacoPortions(beefTacoIngredients)
+            } else if (selectedMeat === "Combo"){
+                calculateTacoPortions (comboTacoIngredients)
+            }
+                
         })
         //test
         console.log("TacosTacosTacos")
@@ -47,6 +60,7 @@ function chooseType () {
             meat.appendChild(option);
         })
         meat.classList = "options"
+        optionsDiv.appendChild(meat)
 
         //input for headcount
         var headCount = document.createElement("input")
@@ -56,11 +70,21 @@ function chooseType () {
         var calculateBtn = document.createElement("button")
         calculateBtn.textContent = "get you some portions"
         optionsDiv.appendChild(calculateBtn)
-        optionsDiv.appendChild(meat)
+        
 
         //event listener to fire calculatePortions
         calculateBtn.addEventListener("click", function(event){
-            calculateFajitaPortions();
+            let selectedMeat = meat.value;
+            totalPeople = headCount.value
+
+            if (selectedMeat === "Chicken") {
+                calculateFajitaPortions(chickenFajitaIngredients)
+            } else if (selectedMeat === "Steak"){
+                calculateFajitaPortions(steakFajitaIngredients)
+            } else if (selectedMeat === "Combo"){
+                calculateFajitaPortions (comboFajitaIngredients)
+            }
+           
         })
 
 
@@ -70,13 +94,8 @@ function chooseType () {
  console.log("you rang?")
 }
 
-function calculateTacoPortions () {
-    console.log("taco success")
-}
 
-function calculateFajitaPortions () {
-    console.log("fajita success")
-}
+
 
 
 typeSelectBtn.addEventListener("click", function(event){
