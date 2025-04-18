@@ -41,14 +41,19 @@ const comboTacoIngredients = {
 function calculateTacoPortions (ingredientSet) {
     
     let a = parseInt(totalPeople)
-    
+    const output = [];
+    output.push(`Taco Bar for ${a}`)
+
         for (let ingredient in ingredientSet) {
             let { amount, unit } = ingredientSet[ingredient];
             let totalAmount = (amount * a).toFixed(2);
-            console.log(`${ingredient}: ${totalAmount} ${unit}`);
+            output.push(`${ingredient}: ${totalAmount} ${unit}`)
         }
     
-    
+        
+
+        displayPortions(output);
+
     console.log(totalPeople)
     console.log("taco success")
 }
@@ -84,8 +89,8 @@ const steakFajitaIngredients = {
 };
 
 const comboFajitaIngredients = {
-    steak: { amount: 0.33, unit: "lbs" },
-    chicken: { amount: 0.33, unit: "lbs" },
+    steak: { amount: 0.165, unit: "lbs" },
+    chicken: { amount: 0.165, unit: "lbs" },
     veggies: { amount: 0.13, unit: "lbs" },
     beans: { amount: 1, unit: "scoops" },
     rice: { amount: 1, unit: "scoops" },
@@ -101,19 +106,50 @@ const comboFajitaIngredients = {
 
 function calculateFajitaPortions (ingredientSet) {
     let a = parseInt(totalPeople)
-    
+    const output = [];
+    output.push(`Fajita Bar for ${a}`)
+
     for (let ingredient in ingredientSet) {
         let { amount, unit } = ingredientSet[ingredient];
         let totalAmount = (amount * a).toFixed(2);
-        console.log(`${ingredient}: ${totalAmount} ${unit}`);
+        output.push(`${ingredient}: ${totalAmount} ${unit}`);
     }
 
-
-    console.log(totalPeople)
-    console.log("fajita success")
+    displayPortions(output);
 }
 
 //this is where I left off
 function displayPortions (resultsArray){
     resultsDiv.innerHTML = ""
+
+    resultsArray.forEach(line => {
+        const p = document.createElement("p");
+        p.textContent = line;
+        resultsDiv.appendChild(p);
+    });
+
+    const printBtn = document.createElement("button");
+    printBtn.textContent = "🖨️ Print Portions";
+    printBtn.classList.add("btn", "btn-print"); // optional class for styling
+    printBtn.addEventListener("click", function () {
+        printResultsOnly("results");
+    });
+
+    resultsDiv.appendChild(printBtn);
+}
+
+function printResultsOnly(elementId) {
+    const content = document.getElementById(elementId).innerHTML;
+    const printWindow = window.open('', '', 'height=600,width=800');
+
+    printWindow.document.write('<html><head><title>Print Portions</title>');
+    printWindow.document.write('<style>body{font-family:sans-serif; padding:20px;} p{margin:0 0 10px;} button{display:none;}</style>');
+    printWindow.document.write('</head><body>');
+    printWindow.document.write(content);
+    printWindow.document.write('</body></html>');
+
+    printWindow.document.close();
+    printWindow.focus();
+    printWindow.print();
+    printWindow.close();
 }
