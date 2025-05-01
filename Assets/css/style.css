@@ -6,6 +6,9 @@
     border-radius: 8px;
     max-width: 400px;
 }
+#results {
+    display: none;
+}
 #results p {
     margin: 4px 0;
     font-family: monospace;

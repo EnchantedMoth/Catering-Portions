@@ -95,10 +95,9 @@ function chooseType () {
 }
 
 
-
-
-
-typeSelectBtn.addEventListener("click", function(event){
-    optionsDiv.innerHTML = ""
+typeSelect.addEventListener("change", function(event) {
+    optionsDiv.innerHTML = "";
+    resultsDiv.innerHTML = "";
+    resultsDiv.style.display = "none";
     chooseType();
-})
+});

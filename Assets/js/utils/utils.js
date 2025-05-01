@@ -127,6 +127,13 @@ function calculateFajitaPortions(ingredientSet) {
 
 //this is where I left off
 function displayPortions(resultsArray) {
+    if (!resultsArray || resultsArray.length === 0) {
+        resultsDiv.style.display = "none";
+        return;
+    }
+
+    // Show the results div
+    resultsDiv.style.display = "block";
     resultsDiv.innerHTML = "";
 
     resultsArray.forEach(el => {
@@ -143,7 +150,7 @@ function displayPortions(resultsArray) {
 
     const printBtn = document.createElement("button");
     printBtn.textContent = "🖨️ Print Portions";
-    printBtn.classList.add("btn", "btn-print");
+    printBtn.classList.add("btn", "btn-print", "btn-primary", "mt-3");
     printBtn.addEventListener("click", function () {
         printResultsOnly("results");
     });
