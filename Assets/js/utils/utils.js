@@ -42,7 +42,10 @@ function calculateTacoPortions (ingredientSet) {
     
     let a = parseInt(totalPeople)
     const output = [];
-    output.push(`Taco Bar for ${a}`)
+    
+    const heading = document.createElement("h1");
+    heading.textContent = `Taco Bar for ${a}`;
+    output.push(heading);
 
         for (let ingredient in ingredientSet) {
             let { amount, unit } = ingredientSet[ingredient];
@@ -104,10 +107,13 @@ const comboFajitaIngredients = {
     guac: { amount: 0.11, unit: "/12oz container" }
 };
 
-function calculateFajitaPortions (ingredientSet) {
-    let a = parseInt(totalPeople)
+function calculateFajitaPortions(ingredientSet) {
+    let a = parseInt(totalPeople);
     const output = [];
-    output.push(`Fajita Bar for ${a}`)
+
+    const heading = document.createElement("h1");
+    heading.textContent = `Fajita Bar for ${a}`;
+    output.push(heading);
 
     for (let ingredient in ingredientSet) {
         let { amount, unit } = ingredientSet[ingredient];
@@ -118,19 +124,26 @@ function calculateFajitaPortions (ingredientSet) {
     displayPortions(output);
 }
 
-//this is where I left off
-function displayPortions (resultsArray){
-    resultsDiv.innerHTML = ""
 
-    resultsArray.forEach(line => {
-        const p = document.createElement("p");
-        p.textContent = line;
-        resultsDiv.appendChild(p);
+//this is where I left off
+function displayPortions(resultsArray) {
+    resultsDiv.innerHTML = "";
+
+    resultsArray.forEach(el => {
+        // Check if it’s a DOM element or a string
+        if (typeof el === "string") {
+            const p = document.createElement("p");
+            p.textContent = el;
+            resultsDiv.appendChild(p);
+        } else {
+            // It’s already an element (like <h1> or <p>)
+            resultsDiv.appendChild(el);
+        }
     });
 
     const printBtn = document.createElement("button");
     printBtn.textContent = "🖨️ Print Portions";
-    printBtn.classList.add("btn", "btn-print"); // optional class for styling
+    printBtn.classList.add("btn", "btn-print");
     printBtn.addEventListener("click", function () {
         printResultsOnly("results");
     });
@@ -138,14 +151,33 @@ function displayPortions (resultsArray){
     resultsDiv.appendChild(printBtn);
 }
 
+
 function printResultsOnly(elementId) {
-    const content = document.getElementById(elementId).innerHTML;
+    const resultsDiv = document.getElementById(elementId).cloneNode(true);
+
+    // Remove buttons from the clone
+    const buttons = resultsDiv.querySelectorAll('button');
+    buttons.forEach(btn => btn.remove());
+
+    const content = resultsDiv.innerHTML;
+
     const printWindow = window.open('', '', 'height=600,width=800');
 
     printWindow.document.write('<html><head><title>Print Portions</title>');
-    printWindow.document.write('<style>body{font-family:sans-serif; padding:20px;} p{margin:0 0 10px;} button{display:none;}</style>');
+    printWindow.document.write(`
+        <style>
+            body { font-family: sans-serif; padding: 20px; display: flex; flex-direction: column; gap: 40px; }
+            .portion-set { border: 1px dashed #333; padding: 10px; }
+            p { margin: 0 0 10px; }
+            h1 { margin: 0 0 15px; font-size: 24px; }
+        </style>
+    `);
     printWindow.document.write('</head><body>');
-    printWindow.document.write(content);
+
+    // Add two copies
+    printWindow.document.write(`<div class="portion-set">${content}</div>`);
+    printWindow.document.write(`<div class="portion-set">${content}</div>`);
+
     printWindow.document.write('</body></html>');
 
     printWindow.document.close();

@@ -13,7 +13,7 @@ function chooseType () {
     if (typeSelect.value === "tacoBar"){
         //make select with options for taco meat
         var meat = document.createElement('select')
-        var tacoMeatOptions = ["Chicken", "Ground Beef", "Combo"];
+        var tacoMeatOptions = ["Combo", "Ground Beef", "Chicken"];
         tacoMeatOptions.forEach(function (tacoOptionText) {
             var option = document.createElement("option");
             option.value = tacoOptionText;
@@ -52,7 +52,7 @@ function chooseType () {
 
         //make select with options for fajita meat
         var meat = document.createElement('select')
-        var fajitaMeatOptions = ["Chicken", "Steak", "Combo"];
+        var fajitaMeatOptions = ["Combo", "Steak", "Chicken"];
         fajitaMeatOptions.forEach(function (fajitaOptionText) {
             var option = document.createElement("option");
             option.value = fajitaOptionText;
