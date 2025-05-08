@@ -1,6 +1,6 @@
 const chickenTacoIngredients = {
     chicken: { amount: 0.3, unit: "lbs" },
-    beans: { amount: .1469, unit: "lbs" },
+    beans: { amount: .1125, unit: "lbs" },
     rice: { amount: .1125, unit: "lbs" },
     tortillas: { amount: 2, unit: "" },
     chips: { amount: 0.083, unit: "bags" },
@@ -13,7 +13,7 @@ const chickenTacoIngredients = {
 
 const beefTacoIngredients = {
     beef: { amount: 0.3, unit: "lbs" },
-    beans: { amount: .1469, unit: "lbs" },
+    beans: { amount: .1125, unit: "lbs" },
     rice: { amount: .1125, unit: "lbs" },
     tortillas: { amount: 2, unit: "" },
     chips: { amount: 0.083, unit: "bags" },
@@ -27,7 +27,7 @@ const beefTacoIngredients = {
 const comboTacoIngredients = {
     chicken: { amount: 0.15, unit: "lbs" },
     beef: { amount: 0.15, unit: "lbs" },
-    beans: { amount: .1469, unit: "lbs" },
+    beans: { amount: .1125, unit: "lbs" },
     rice: { amount: .1125, unit: "lbs" },
     tortillas: { amount: 2, unit: "" },
     chips: { amount: 0.083, unit: "bags" },
@@ -64,7 +64,7 @@ function calculateTacoPortions (ingredientSet) {
 const chickenFajitaIngredients = {
     chicken: { amount: 0.33, unit: "lbs" },
     veggies: { amount: 0.13, unit: "lbs" },
-    beans: { amount: .1469, unit: "lbs" },
+    beans: { amount: .1125, unit: "lbs" },
     rice: { amount: .1125, unit: "lbs" },
     tortillas: { amount: 2, unit: "" },
     chips: { amount: 0.083, unit: "bags" },
@@ -79,7 +79,7 @@ const chickenFajitaIngredients = {
 const steakFajitaIngredients = {
     steak: { amount: 0.33, unit: "lbs" },
     veggies: { amount: 0.13, unit: "lbs" },
-    beans: { amount: .1469, unit: "lbs" },
+    beans: { amount: .1125, unit: "lbs" },
     rice: { amount: .1125, unit: "lbs" },
     tortillas: { amount: 2, unit: "" },
     chips: { amount: 0.083, unit: "bags" },
@@ -95,7 +95,7 @@ const comboFajitaIngredients = {
     steak: { amount: 0.165, unit: "lbs" },
     chicken: { amount: 0.165, unit: "lbs" },
     veggies: { amount: 0.13, unit: "lbs" },
-    beans: { amount: .1469, unit: "lbs" },
+    beans: { amount: .1125, unit: "lbs" },
     rice: { amount: .1125, unit: "lbs" },
     tortillas: { amount: 2, unit: "" },
     chips: { amount: 0.083, unit: "bags" },
