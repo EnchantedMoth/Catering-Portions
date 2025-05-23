@@ -1,7 +1,7 @@
 const chickenTacoIngredients = {
-    chicken: { amount: 0.3, unit: "lbs" },
+    chicken: { amount: 0.26, unit: "lbs" },
     beans: { amount: .1125, unit: "lbs" },
-    rice: { amount: .1125, unit: "lbs" },
+    rice: { amount: .1395, unit: "lbs" },
     tortillas: { amount: 2, unit: "" },
     chips: { amount: 0.083, unit: "bags" },
     salsa: { amount: .1, unit: "12oz container" },
@@ -12,9 +12,9 @@ const chickenTacoIngredients = {
 };
 
 const beefTacoIngredients = {
-    beef: { amount: 0.3, unit: "lbs" },
+    beef: { amount: 0.26, unit: "lbs" },
     beans: { amount: .1125, unit: "lbs" },
-    rice: { amount: .1125, unit: "lbs" },
+    rice: { amount: .1395, unit: "lbs" },
     tortillas: { amount: 2, unit: "" },
     chips: { amount: 0.083, unit: "bags" },
     salsa: { amount: .1, unit: "12oz container" },
@@ -25,10 +25,10 @@ const beefTacoIngredients = {
 };
 
 const comboTacoIngredients = {
-    chicken: { amount: 0.15, unit: "lbs" },
-    beef: { amount: 0.15, unit: "lbs" },
+    chicken: { amount: 0.13, unit: "lbs" },
+    beef: { amount: 0.13, unit: "lbs" },
     beans: { amount: .1125, unit: "lbs" },
-    rice: { amount: .1125, unit: "lbs" },
+    rice: { amount: .1395, unit: "lbs" },
     tortillas: { amount: 2, unit: "" },
     chips: { amount: 0.083, unit: "bags" },
     salsa: { amount: .1, unit: "12oz container" },
@@ -62,10 +62,10 @@ function calculateTacoPortions (ingredientSet) {
 }
 
 const chickenFajitaIngredients = {
-    chicken: { amount: 0.33, unit: "lbs" },
+    chicken: { amount: 0.28, unit: "lbs" },
     veggies: { amount: 0.13, unit: "lbs" },
     beans: { amount: .1125, unit: "lbs" },
-    rice: { amount: .1125, unit: "lbs" },
+    rice: { amount: .1395, unit: "lbs" },
     tortillas: { amount: 2, unit: "" },
     chips: { amount: 0.083, unit: "bags" },
     salsa: { amount: .1, unit: "12oz container" },
@@ -77,10 +77,10 @@ const chickenFajitaIngredients = {
 };
 
 const steakFajitaIngredients = {
-    steak: { amount: 0.33, unit: "lbs" },
+    steak: { amount: 0.28, unit: "lbs" },
     veggies: { amount: 0.13, unit: "lbs" },
     beans: { amount: .1125, unit: "lbs" },
-    rice: { amount: .1125, unit: "lbs" },
+    rice: { amount: .1395, unit: "lbs" },
     tortillas: { amount: 2, unit: "" },
     chips: { amount: 0.083, unit: "bags" },
     salsa: { amount: .1, unit: "12oz container" },
@@ -92,11 +92,11 @@ const steakFajitaIngredients = {
 };
 
 const comboFajitaIngredients = {
-    steak: { amount: 0.165, unit: "lbs" },
-    chicken: { amount: 0.165, unit: "lbs" },
+    steak: { amount: 0.14, unit: "lbs" },
+    chicken: { amount: 0.14, unit: "lbs" },
     veggies: { amount: 0.13, unit: "lbs" },
     beans: { amount: .1125, unit: "lbs" },
-    rice: { amount: .1125, unit: "lbs" },
+    rice: { amount: .1395, unit: "lbs" },
     tortillas: { amount: 2, unit: "" },
     chips: { amount: 0.083, unit: "bags" },
     salsa: { amount: .1, unit: "12oz container" },
