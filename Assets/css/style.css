@@ -1,3 +1,14 @@
+body {
+    height: 100vh;
+    padding-top: 25px;
+    padding-left: 20%;
+    padding-right: 20%;
+}
+#title {
+    color: #000;
+    text-align: center;
+    padding-bottom: 25px;
+}
 #results {
     margin-top: 20px;
     padding: 15px;
@@ -13,4 +24,63 @@
     margin: 4px 0;
     font-family: monospace;
     font-size: x-large;
+}
+
+/* General spacing for option selectors */
+select,
+input[type="number"],
+input[type="text"],
+input[type="radio"],
+input[type="checkbox"] {
+  margin: 15px 0;
+  padding: 6px 10px;
+  font-size: 1rem;
+}
+
+/* Grouping labels and inputs nicely */
+.option-group {
+  margin-bottom: 16px;
+  margin-left: 30px;
+
+}
+
+/* If using labels next to inputs */
+.option-group label {
+  display: inline-block;
+  margin-right: 12px;
+  margin-bottom: 6px;
+}
+
+/* For stacked select boxes */
+select {
+  display: block;
+  min-width: 180px;
+}
+
+/* Optional: slightly round and shadow the selectors */
+select,
+input[type="number"] {
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.checklist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.checklist li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 4px 0;
+}
+.checklist .box {
+  width: 20px;
+  height: 20px;
+  border: 1px solid #000;
+  flex-shrink: 0;
+}
+.checklist .item-text {
+  flex: 1;
 }

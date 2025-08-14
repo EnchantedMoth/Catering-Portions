@@ -9,12 +9,12 @@
 </head>
 <body>
     <nav>
-        <h1>Let's get some portions</h1>
+        <h1 id="title">&#x1F32E;Let's Get Some Portions&#x1F32E;</h1>
     </nav>
         <main>
             <div>
+                <label for="typeSelect">Choose Catering Type:</label>
                 <select name="taco or fajita" id="typeSelect">
-                    <option value="">Tacos or Fajitas</option>
                     <option value="tacoBar">Taco Bar</option>
                     <option value="fajitaBar">Fajita Bar</option>
                 </select>
@@ -24,6 +24,8 @@
             <div id="results" class="container my-4 p-4 border rounded shadow"></div>
         </main>
     <script src="./Assets/js/utils/utils.js"></script>
+    <script src="./Assets/js/utils/fajitaUI.js"></script>
+    <script src="./Assets/js/utils/tacoUI.js"></script>
     <script src="./Assets/js/script.js"></script>
 </body>
 </html>
