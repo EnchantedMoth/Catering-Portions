@@ -176,8 +176,8 @@ function ensurePrintStyles() {
     .card { border: 1px solid #ccc; border-radius: 8px; padding: 16px; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
     .print-inner-grid { display: grid; grid-template-columns: 3fr auto; gap: 20px; align-items: start; }
     .ingredients-col h1, .ingredients-col h2, .ingredients-col h3 { margin: 0 0 12px; }
-    .ingredients-col ul, .extras-col ul { margin: 0; padding-left: 18px; }
-    .ingredients-col li, .extras-col li { margin: 4px 0; }
+    .ingredients-col ul, .extras-col ul { margin: 0; padding-left: 18px; padding-right: 18px; }
+    .ingredients-col li, .extras-col li { margin: 4px 0; padding-right: 18px; }
     .section-title { margin: 0 0 10px; font-size: 1rem; font-weight: 600; }
     .checklist { list-style: none; margin: 0; padding: 0;}
     .checklist li { display: flex; align-items: flex-start; gap: 8px; margin: 4px 0; }
@@ -188,7 +188,7 @@ function ensurePrintStyles() {
     /* make the extras column not eat space */
     .extras-col { justify-self: start; }
 
-    @media (max-width: 768px) {
+    @media (max-width: 950px) {
       .print-inner-grid { grid-template-columns: 1fr; }
     }
   `;
@@ -329,7 +329,7 @@ function printResultsOnly(elementId) {
           .ingredients-col h1, .ingredients-col h2, .ingredients-col h3 { margin: 0 0 10px; line-height: 1.2; }
           ul { margin: 0; padding-left: 0.18in; }
           li { margin: 2px 0; }
-          .extras-col { justify-self: start; }
+          .extras-col { justify-self: start; padding-right: 25px; }
           @media print {
             body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
           }

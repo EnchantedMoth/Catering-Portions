@@ -20,7 +20,7 @@ body {
     border: 1px solid #ccc;
     background: #f9f9f9;
     border-radius: 8px;
-    max-width: 400px;
+    max-width: 900px;
 }
 #results {
     display: none;
@@ -88,6 +88,10 @@ input[type="number"] {
 }
 .checklist .item-text {
   flex: 1;
+}
+
+.box {
+  width: 90vw;
 }
 
 .text-box {
