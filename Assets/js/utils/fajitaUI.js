@@ -89,3 +89,78 @@ function buildFajitaUI() {
     });
   });
 }
+
+const FajitaIngredients = {
+    Meat: {
+        chicken: { amount: 0.28, unit: "lbs" },
+        steak: { amount: 0.28, unit: "lbs" },
+        combo: [
+            {name: "chicken", amount: .14, unit: "lbs"},
+            {name: "steak", amount: .14, unit: "lbs"}
+        ]
+    },
+    veggies: { amount: 0.13, unit: "lbs" },
+    beans: {
+        refried: { amount: .1125, unit: "lbs" },
+        black: { amount: .1395, unit: "lbs"}
+    },
+    rice: {
+        mexican: { amount: .1395, unit: "lbs" },
+        white: { amount: .1395, unit: "lbs" }
+    },
+    tortillas: { amount: 2, unit: "" },
+    chips: { amount: 0.083, unit: "bags" },
+    salsa: { amount: .1, unit: "12oz container" },
+    lettuce: { amount: 0.06, unit: "lbs" },
+    cheese: { amount: 0.06, unit: "lbs" },
+    pico: { amount: 0.06, unit: "lbs" },
+    sour: { amount: .083, unit: "/12oz container" },
+    guac: { amount: 0.11, unit: "/12oz container" }
+};
+
+
+function calculateFajitaPortions({ meatKey, beanKey, riceKey, people }) {
+  const a = Number(people || 0);
+  const out = [];
+
+  const heading = document.createElement("h1");
+  heading.textContent = `Fajita Bar for ${a}`;
+  out.push(heading);
+
+  // Protein(s)
+  const meatDef = FajitaIngredients.Meat[meatKey];
+  if (Array.isArray(meatDef)) {
+    meatDef.forEach(m => {
+      const qty = m.amount * a;
+      out.push(`${m.name}: ${fmt(qty)} ${pluralize(m.unit, qty)}`);
+    });
+  } else {
+    const qty = meatDef.amount * a;
+    out.push(`${meatKey}: ${fmt(qty)} ${pluralize(meatDef.unit, qty)}`);
+  }
+
+  // Beans
+  const b = FajitaIngredients.beans[beanKey];
+  {
+    const qty = b.amount * a;
+    out.push(`${beanKey} beans: ${fmt(qty)} ${pluralize(b.unit, qty)}`);
+  }
+
+  // Rice
+  const r = FajitaIngredients.rice[riceKey];
+  {
+    const qty = r.amount * a;
+    out.push(`${riceKey} rice: ${fmt(qty)} ${pluralize(r.unit, qty)}`);
+  }
+
+  // Everything else (skip nested keys)
+  const skip = new Set(["Meat", "beans", "rice"]);
+  for (const key in FajitaIngredients) {
+    if (skip.has(key)) continue;
+    const { amount, unit } = FajitaIngredients[key];
+    const qty = amount * a;
+    out.push(`${key}: ${fmt(qty)} ${pluralize(unitFor(key, unit), qty)}`);
+  }
+
+  displayPortions(out); // uses your existing renderer + print button
+}
