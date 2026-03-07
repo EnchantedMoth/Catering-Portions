@@ -12,8 +12,8 @@ function pluralize(unit, qty) {
 
 const fajitaLabelMap = {
   meat:   { chicken: "Chicken", steak: "Steak", combo: "Combo" },
-  beans:  { refried: "Refried Beans", black: "Black Beans" },
-  rice:   { mexican: "Mexican Rice",  white: "White Rice" }
+  beans:  { refried: "Refried Beans", black: "Black Beans", combo: "Combo" },
+  rice:   { mexican: "Mexican Rice",  white: "White Rice", combo: "Combo" }
 };
 
 function buildFajitaUI() {
@@ -37,7 +37,7 @@ function buildFajitaUI() {
   const beanSelect = document.createElement("select");
   Object.keys(FajitaIngredients.beans).forEach(k => {
     const opt = document.createElement("option");
-    opt.value = k; // 'refried' | 'black'
+    opt.value = k; // 'refried' | 'black' | 'combo'
     opt.textContent = fajitaLabelMap.beans[k] || k;
     beanSelect.appendChild(opt);
   });
@@ -48,7 +48,7 @@ function buildFajitaUI() {
   const riceSelect = document.createElement("select");
   Object.keys(FajitaIngredients.rice).forEach(k => {
     const opt = document.createElement("option");
-    opt.value = k; // 'mexican' | 'white'
+    opt.value = k; // 'mexican' | 'white' | 'combo'
     opt.textContent = fajitaLabelMap.rice[k] || k;
     riceSelect.appendChild(opt);
   });
@@ -102,11 +102,19 @@ const FajitaIngredients = {
     veggies: { amount: 0.13, unit: "lbs" },
     beans: {
         refried: { amount: .1125, unit: "lbs" },
-        black: { amount: .1395, unit: "lbs"}
+        black: { amount: .1395, unit: "lbs"},
+        combo: [
+            {name: "refried", amount: .05625, unit: "lbs"},
+            {name: "black", amount: .06975, unit: "lbs"}
+        ]
     },
     rice: {
         mexican: { amount: .1395, unit: "lbs" },
-        white: { amount: .1395, unit: "lbs" }
+        white: { amount: .1395, unit: "lbs" },
+        combo: [
+            {name: "mexican", amount: .06975, unit: "lbs"},
+            {name: "white", amount: .06975, unit: "lbs"}
+        ]
     },
     tortillas: { amount: 2, unit: "" },
     chips: { amount: 0.083, unit: "bags" },
@@ -141,13 +149,27 @@ function calculateFajitaPortions({ meatKey, beanKey, riceKey, people }) {
 
   // Beans
   const b = FajitaIngredients.beans[beanKey];
-  {
+  if (Array.isArray(b)) {
+    b.forEach(m => {
+      const qty = m.amount * a;
+      out.push(`${m.name} beans: ${fmt(qty)} ${pluralize(m.unit, qty)}`);
+    });
+  } else{
     const qty = b.amount * a;
     out.push(`${beanKey} beans: ${fmt(qty)} ${pluralize(b.unit, qty)}`);
   }
 
   // Rice
   const r = FajitaIngredients.rice[riceKey];
+  if (Array.isArray(r)) {
+    r.forEach(m => {
+      const qty = m.amount * a;
+      out.push(`${m.name} rice: ${fmt(qty)} ${pluralize(m.unit, qty)}`);
+    });
+  } else {
+    const qty = r.amount * a;
+    out.push(`${riceKey} rice: ${fmt(qty)} ${pluralize(r.unit, qty)}`);
+  }
   {
     const qty = r.amount * a;
     out.push(`${riceKey} rice: ${fmt(qty)} ${pluralize(r.unit, qty)}`);

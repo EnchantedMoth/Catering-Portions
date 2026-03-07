@@ -13,8 +13,8 @@ function pluralize(unit, qty) {
 // Pretty labels for selects
 const labelMap = {
   meat: { chicken: "Chicken", beef: "Ground Beef", combo: "Combo" },
-  beans: { refried: "Refried Beans", black: "Black Beans" },
-  rice: { mexican: "Mexican Rice", white: "White Rice" }
+  beans: { refried: "Refried Beans", black: "Black Beans", combo: "Combo" },
+  rice: { mexican: "Mexican Rice", white: "White Rice", combo: "Combo" }
 };
 
 function buildTacoUI() {
@@ -38,7 +38,7 @@ function buildTacoUI() {
   const beanSelect = document.createElement("select");
   Object.keys(TacoIngredients.beans).forEach(k => {
     const opt = document.createElement("option");
-    opt.value = k; // 'refried' | 'black'
+    opt.value = k; // 'refried' | 'black' | 'combo'
     opt.textContent = labelMap.beans[k] || k;
     beanSelect.appendChild(opt);
   });
@@ -49,7 +49,7 @@ function buildTacoUI() {
   const riceSelect = document.createElement("select");
   Object.keys(TacoIngredients.rice).forEach(k => {
     const opt = document.createElement("option");
-    opt.value = k; // 'mexican' | 'white'
+    opt.value = k; // 'mexican' | 'white' | 'combo'
     opt.textContent = labelMap.rice[k] || k;
     riceSelect.appendChild(opt);
   });
@@ -108,11 +108,19 @@ const TacoIngredients = {
     },
     beans: {
         refried: { amount: .1125, unit: "lbs" },
-        black: { amount: .1395, unit: "lbs"}
+        black: { amount: .1395, unit: "lbs"},
+        combo: [
+            {name: "refried", amount: .05625, unit: "lbs"},
+            {name: "black", amount: .06975, unit: "lbs"}
+        ]
     },
     rice: {
         mexican: { amount: .1395, unit: "lbs" },
-        white: { amount: .1395, unit: "lbs" }
+        white: { amount: .1395, unit: "lbs" },
+        combo: [
+            {name: "mexican", amount: .06975, unit: "lbs"},
+            {name: "white", amount: .06975, unit: "lbs"}
+        ] 
     },
     tortillas: { amount: 2, unit: "" },
     chips: { amount: 0.083, unit: "bags" },
@@ -146,13 +154,27 @@ function calculateTacoPortions({ meatKey, beanKey, riceKey, people }) {
 
   // --- Beans (nested choice)
   const b = TacoIngredients.beans[beanKey];
-  {
+  if (Array.isArray(b)) {
+    b.forEach(m => {
+      const qty = m.amount * a;
+      out.push(`${m.name} beans: ${fmt(qty)} ${pluralize(m.unit, qty)}`);
+    });
+  } else {
     const qty = b.amount * a;
     out.push(`${beanKey} beans: ${fmt(qty)} ${pluralize(b.unit, qty)}`);
   }
 
   // --- Rice (nested choice)
   const r = TacoIngredients.rice[riceKey];
+  if (Array.isArray(r)) {
+    r.forEach(m => {
+      const qty = m.amount * a;
+      out.push(`${m.name} rice: ${fmt(qty)} ${pluralize(m.unit, qty)}`);
+    });
+  } else {
+    const qty = r.amount * a;
+    out.push(`${riceKey} rice: ${fmt(qty)} ${pluralize(r.unit, qty)}`);
+  }
   {
     const qty = r.amount * a;
     out.push(`${riceKey} rice: ${fmt(qty)} ${pluralize(r.unit, qty)}`);
