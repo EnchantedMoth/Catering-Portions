@@ -119,7 +119,7 @@ const TacoIngredients = {
     salsa: { amount: .1, unit: "12oz container" },
     lettuce: { amount: 0.06, unit: "lbs" },
     cheese: { amount: 0.06, unit: "lbs" },
-    pico: { amount: 0.06, unit: "lbs" },
+    pico: { amount: 0.067, unit: "lbs" },
     sour: { amount: .083, unit: "/12oz container" }
 };
 
